@@ -1,11 +1,26 @@
 function AddressBook() {
 	var self = this;
-	contactList = [],
+	self.contactList = [];
+	self.initialComplete = false;
 	self.addContact = function(contact) {
-		contactList.push(contact);
-		console.log(contactList)
+		self.contactList.push(contact);
 	}
 	self.getContact= function(index) {
-		return contactList[0];
+		return self.contactList[0];
+	}
+
+	self.getInitialContacts = function(cb) {
+		var self = this;
+
+		setTimeout(function() {
+			self.initialComplete = true;
+			if (cb) {
+				return cb();
+			}
+		}, 3);
+	}
+
+	self.deleteContact = function(index) {
+		self.contactList.splice(index, 1);
 	}
 }
